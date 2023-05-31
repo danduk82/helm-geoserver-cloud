@@ -39,6 +39,20 @@ additional-stuff: &additional-stuff
   volumes:
     <<: *additional-volumes
   containers:
+    debug:
+      env:
+        <<: *env-override
+      volumeMounts:
+        <<: *additional-volume-mounts
+        /tmp:
+          name: tmp-empty-dir
+      image:
+        tag: 'lts-hydrogen'
+        repository: node
+      command:
+        - bash
+        - -c
+        - "sleep infinity"
     spring:
       env:
         <<: *env-override
